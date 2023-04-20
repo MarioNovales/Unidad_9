@@ -36,7 +36,7 @@ public class Ejercicio2 {
 
                     }
                 }
-                
+
                 PreparedStatement prst;
                 int contadorLin = 0;
 
