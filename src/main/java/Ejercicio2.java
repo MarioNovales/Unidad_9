@@ -35,13 +35,19 @@ public class Ejercicio2 {
 
                     }
                 }
-
+                
                 PreparedStatement prst;
+                int contadorLin = 0;
+
                 for (int i = 0; i < modificaciones().size(); i++){
 
                     prst = con.prepareStatement(modificaciones().get(i));
                     prst.executeUpdate();
+                    int retorno = prst.executeUpdate();
+                    contadorLin += retorno;
+
                 }
+                System.out.println("En la modificacion se han afectado: " + contadorLin + " líneas");
 
             } catch (SQLException e){
                 e.printStackTrace();
@@ -63,11 +69,12 @@ public class Ejercicio2 {
     public static ArrayList<String> modificaciones(){
         ArrayList<String> modificaciones = new ArrayList<>();
 
-        String nombreCen = "SEDE DERECHA";
+        String nombreCen = "SEDE IZQUIERDA";
         int numeroCen = 10;
 
-        String modificacion = "Update centros set nomce = '" + nombreCen + "' where numce = '" + numeroCen + "'";
-        modificaciones.add(modificacion);
+
+        modificaciones.add("Update centros set nomce = '" + nombreCen + "' where numce = '" + numeroCen + "'");
+        modificaciones.add("Update centros set nomce = 'Relacion con alguien' where numce = '20'");
 
         return modificaciones;
 
