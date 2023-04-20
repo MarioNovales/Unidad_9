@@ -7,6 +7,7 @@
         - Ten en cuenta la posible reutilización del código posteriormente
  */
 
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class Ejercicio2 {
     }
 
     public static void conexionBD() {
-        try(Connection con = DriverManager.getConnection("jdbc:mysql://bd-mysql.c9riw8ew65p8.us-east-1.rds.amazonaws.com:3306/practicajdbc","admin","18072110k")) {
+        try(Connection con = DriverManager.getConnection("jdbc:mysql://bd-mysql.c9riw8ew65p8.us-east-1.rds.amazonaws.com:3306/practicajdbc","admin",ponContraseña())) {
 
             try(Statement stmnt = con.createStatement()) {
 
@@ -78,5 +79,23 @@ public class Ejercicio2 {
 
         return modificaciones;
 
+    }
+
+    public static String ponContraseña(){
+
+        String pwd;
+        File archivo = new File("src/main/resources/pwd.txt");
+
+        try(FileReader fr = new FileReader(archivo); BufferedReader br = new BufferedReader(fr)) {
+
+            pwd = br.readLine();
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return pwd;
     }
 }
