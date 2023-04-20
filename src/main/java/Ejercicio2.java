@@ -20,7 +20,7 @@ public class Ejercicio2 {
     }
 
     public static void conexionBD() {
-        try(Connection con = DriverManager.getConnection("jdbc:mysql://bd-mysql.c9riw8ew65p8.us-east-1.rds.amazonaws.com:3306/practicajdbc","admin",ponContraseña())) {
+        try(Connection con = DriverManager.getConnection("jdbc:mysql://bd-mysql.c9riw8ew65p8.us-east-1.rds.amazonaws.com:3306/practicajdbc","admin", getContraseña())) {
 
             try(Statement stmnt = con.createStatement()) {
 
@@ -81,7 +81,7 @@ public class Ejercicio2 {
 
     }
 
-    public static String ponContraseña(){
+    public static String getContraseña(){
 
         String pwd;
         File archivo = new File("src/main/resources/pwd.txt");
